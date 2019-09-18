@@ -24,6 +24,11 @@ node('master') {
 		//sh 'cp target/*.war /opt/tomcat8/webapps'
 	}
 	stage('Notification'){
-	slackSend color: 'good', message: 'Deployment Successful'
+		slackSend color: 'good', message: 'Deployment Successful'
+		emailext(
+			subject : "Deployment Successful",
+			body : "Jenkins Pipeline for maven completed",
+			to : "roopamsharma49@gmail.com"
+		)
 	}
 }
